@@ -142,6 +142,31 @@ function computeTankMovement() {
 
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw scoreboard
+  ctx.save();
+  ctx.globalAlpha = 0.85;
+  ctx.fillStyle = "#222";
+  ctx.fillRect(20, 20, 180, 30 + 22 * Object.keys(state.players).length);
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 16px Arial";
+  ctx.fillText("Scoreboard", 30, 42);
+  ctx.font = "14px Arial";
+  let y = 62;
+  for (const id in state.players) {
+    const p = state.players[id];
+    if (p.lives <= 0) continue;
+    const isPlayer = id === playerId;
+    ctx.fillStyle = isPlayer ? "#4CAF50" : "#fff";
+    ctx.fillText(
+      (isPlayer ? "YOU" : `P${id.slice(0, 3)}`) + " : " + p.lives + " vie" + (p.lives > 1 ? "s" : ""),
+      40,
+      y
+    );
+    y += 22;
+  }
+  ctx.restore();
   
   // Apply camera transform
   ctx.save();
