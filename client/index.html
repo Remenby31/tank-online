@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tank Online</title>
+  <meta name="viewport" content="width=1200, initial-scale=1.0">
+  <style>
+    html, body { 
+      margin: 0; 
+      padding: 0; 
+      background: #222; 
+      color: #fff; 
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+    #game { 
+      display: block; 
+      background: #333;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+    #ui { 
+      position: fixed; 
+      top: 20px; 
+      left: 20px; 
+      z-index: 10;
+      pointer-events: none;
+    }
+    #ui > div {
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div id="ui"></div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

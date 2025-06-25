@@ -1,0 +1,12 @@
+{
+  "tankSpeed": 2.5,
+  "bulletSpeed": 6,
+  "bulletDamage": 1,
+  "maxLives": 3,
+  "respawnCooldown": 5,
+  "mineCooldown": 10,
+  "mineExplosionDelay": 180,
+  "mapWidth": 1200,
+  "mapHeight": 800,
+  "obstacleCount": 15
+}

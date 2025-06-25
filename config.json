@@ -1,0 +1,16 @@
+{
+  "tankSpeed": 1,
+  "rotationSpeed": 0.01,
+  "bulletSpeed": 8,
+  "bulletDamage": 1,
+  "maxLives": 3,
+  "respawnDelay": 3000,
+  "mineCooldown": 2000,
+  "mineExplosionDelay": 180000,
+  "maxMines": 3,
+  "tankRadius": 25,
+  "mapWidth": 1200,
+  "mapHeight": 800,
+  "obstacleCount": 12,
+  "gameUpdateRate": 50
+}

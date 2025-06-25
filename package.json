@@ -1,0 +1,31 @@
+{
+  "name": "tank-online-2",
+  "version": "1.0.0",
+  "description": "Jeu de tanks multijoueur inspiré de Wii Play, développé en TypeScript. Chaque joueur contrôle un tank, le canon suit la souris, tir à la souris, pose de mines, gestion des vies, cooldown à la mort, map générée aléatoirement. Toutes les variables sont modifiables via un fichier JSON.",
+  "main": "index.js",
+  "scripts": {
+    "dev:client": "vite",
+    "dev:server": "tsc --watch --project tsconfig.json",
+    "dev": "concurrently \"npm run dev:server\" \"npm run start:server\" \"npm run dev:client\"",
+    "build:server": "tsc --project tsconfig.json",
+    "build:client": "vite build",
+    "build": "npm run build:server && npm run build:client",
+    "start:server": "node dist/server/server.js",
+    "start": "npm run build && npm run start:server",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "uuid": "^11.1.0",
+    "ws": "^8.18.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "typescript": "^5.8.3",
+    "vite": "^4.5.14"
+  }
+}
