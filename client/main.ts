@@ -110,7 +110,7 @@ let lastCannonAngle = 0;
 
 window.addEventListener("keydown", (e) => {
   if (
-    ["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(e.code)
+    ["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight", "KeyZ", "KeyQ", "KeyS", "KeyD"].includes(e.code)
   ) {
     keyState[e.code] = true;
     e.preventDefault();
@@ -119,7 +119,7 @@ window.addEventListener("keydown", (e) => {
 
 window.addEventListener("keyup", (e) => {
   if (
-    ["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(e.code)
+    ["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight", "KeyZ", "KeyQ", "KeyS", "KeyD"].includes(e.code)
   ) {
     keyState[e.code] = false;
     e.preventDefault();
@@ -130,12 +130,12 @@ function computeTankMovement() {
   let forward = 0, turn = 0;
   
   // Movement du tank
-  if (keyState["ArrowUp"]) forward += 1;
-  if (keyState["ArrowDown"]) forward -= 1;
+  if (keyState["ArrowUp"] || keyState["KeyZ"]) forward += 1;
+  if (keyState["ArrowDown"] || keyState["KeyS"]) forward -= 1;
   
   // Rotation du tank
-  if (keyState["ArrowLeft"]) turn -= 1;
-  if (keyState["ArrowRight"]) turn += 1;
+  if (keyState["ArrowLeft"] || keyState["KeyQ"]) turn -= 1;
+  if (keyState["ArrowRight"] || keyState["KeyD"]) turn += 1;
   
   return { forward, turn };
 }
