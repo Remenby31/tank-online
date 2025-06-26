@@ -90,13 +90,13 @@ let lastMove = { forward: 0, turn: 0 };
 let mouseAngle = 0;
 let lastCannonAngle = 0;
 window.addEventListener("keydown", (e) => {
-    if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(e.code)) {
+    if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight", "KeyZ", "KeyQ", "KeyS", "KeyD"].includes(e.code)) {
         keyState[e.code] = true;
         e.preventDefault();
     }
 });
 window.addEventListener("keyup", (e) => {
-    if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(e.code)) {
+    if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight", "KeyZ", "KeyQ", "KeyS", "KeyD"].includes(e.code)) {
         keyState[e.code] = false;
         e.preventDefault();
     }
@@ -104,19 +104,40 @@ window.addEventListener("keyup", (e) => {
 function computeTankMovement() {
     let forward = 0, turn = 0;
     // Movement du tank
-    if (keyState["ArrowUp"])
+    if (keyState["ArrowUp"] || keyState["KeyZ"])
         forward += 1;
-    if (keyState["ArrowDown"])
+    if (keyState["ArrowDown"] || keyState["KeyS"])
         forward -= 1;
     // Rotation du tank
-    if (keyState["ArrowLeft"])
+    if (keyState["ArrowLeft"] || keyState["KeyQ"])
         turn -= 1;
-    if (keyState["ArrowRight"])
+    if (keyState["ArrowRight"] || keyState["KeyD"])
         turn += 1;
     return { forward, turn };
 }
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw scoreboard
+    ctx.save();
+    ctx.globalAlpha = 0.85;
+    ctx.fillStyle = "#222";
+    ctx.fillRect(20, 20, 180, 30 + 22 * Object.keys(state.players).length);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 16px Arial";
+    ctx.fillText("Scoreboard", 30, 42);
+    ctx.font = "14px Arial";
+    let y = 62;
+    for (const id in state.players) {
+        const p = state.players[id];
+        if (p.lives <= 0)
+            continue;
+        const isPlayer = id === playerId;
+        ctx.fillStyle = isPlayer ? "#4CAF50" : "#fff";
+        ctx.fillText((isPlayer ? "YOU" : `P${id.slice(0, 3)}`) + " : " + p.lives + " vie" + (p.lives > 1 ? "s" : ""), 40, y);
+        y += 22;
+    }
+    ctx.restore();
     // Apply camera transform
     ctx.save();
     ctx.translate(-camera.x, -camera.y);

@@ -1,2 +1,5 @@
 /.claude
 /PLAN.md
+node_modules
+dist
+package-lock.json
